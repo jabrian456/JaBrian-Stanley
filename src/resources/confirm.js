@@ -1,5 +1,5 @@
 define(function() {
    return function(text) {
-      return window.confirm('You fool! ' + text);
+      return window.confirm(text);
    };
 });
