@@ -1,0 +1,8 @@
+{
+   "id": "todo-example-app",
+   "version": "0.0.1",
+   "name": "TODO Example app",
+   "author": "SiteVision AB",
+   "description": "A simple todo app",
+   "helpUrl": "https:/help.sitevision.se"
+}

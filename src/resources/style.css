@@ -1,0 +1,23 @@
+ul.todo-list {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+}
+
+ul.todo-list li {
+   padding: 1em;
+   border-bottom: 1px solid #eee;
+}
+
+ul.todo-list li .delete-item {
+   float: right;
+   color: #eee;
+   background-color: #aaa;
+   padding: 5px;
+   border-radius: 3px;
+   border: 1px solid #eee;
+}
+
+.todo-delete-form {
+   float: right;
+}

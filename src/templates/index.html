@@ -1,0 +1,11 @@
+<h1 class="<%= headingFont %>"><%= appData.get('headingText') %></h1>
+<form class="todo-form" action="<%= url('/add') %>" method="post">
+   <input type="text" name="todoItem" placeholder="<%= appData.get('placeholderText') %>" autocomplete="off" />
+   <input type="submit" value="<%= appData.get('buttonText') %>" />
+</form>
+
+<ul class="todo-list">
+   <% _.each(items, function(item) { %>
+   <%= partial.render('item', {item: item, itemFont: itemFont}) %>
+   <% }); %>
+</ul>
