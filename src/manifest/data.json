@@ -1,47 +1,29 @@
 {
    "properties": [
       {
-         "name": "headingText",
-         "type": "sv.textField",
-         "label": "Heading text",
-         "value": "Todo!",
-         "options": {
-            "placeholder": "Todo!"
-         }
-      },
-      {
          "name": "placeholderText",
          "type": "sv.textField",
-         "label": "Placeholder text",
-         "value": "Take out the trash",
+         "label": "Platshållare",
+         "value": "Vad ska du göra?",
          "options": {
-            "placeholder": "Take out the trash"
-         }
-      },
-      {
-         "name": "buttonText",
-         "type": "sv.textField",
-         "label": "Button text",
-         "value": "Save",
-         "options": {
-            "placeholder": "Save"
+            "placeholder": "Vad ska du göra?"
          }
       },
       {
          "name": "maxNumberOfItems",
          "type": "sv.number",
-         "label": "Max number of items",
+         "label": "Max antal",
          "value": 10
       },
       {
          "name": "headingFont",
          "type": "sv.font",
-         "label": "Heading font"
+         "label": "Rubrikformatmall"
       },
       {
          "name": "itemFont",
          "type": "sv.font",
-         "label": "Item font"
+         "label": "Listformatmall"
       }
    ]
 }

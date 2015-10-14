@@ -1,26 +1,26 @@
-<div class="todo-example-app">
-   <h1 class="<%= headingFont %>"><%= appData.get('headingText') %></h1>
-   <% if (typeof(error) !== 'undefined') { %>
-   <div class="error">
-      Error code: <%= error.status %><br>
-      Message: <%= error.message %>
+<div class="todo-app-container">
+   <div class="todo-example-app">
+      <% if (typeof(error) !== 'undefined') { %>
+      <div class="error">
+         Message: <%= error.message %>
+      </div>
+      <% } %>
+      <form class="todo-form" action="<%= url('/add') %>" method="post">
+         <input type="text" name="todoItem" placeholder="<%= appData.get('placeholderText') %>" autocomplete="off" />
+         <input type="submit" />
+      </form>
+
+      <section class="main">
+         <%= partial.render('todo-list', obj) %>
+      </section>
+
+      <footer>
+         <span class="todo-count"><%= partial.render('todo-count', {count: remaining}) %></span>
+         <ul class="filters">
+            <li><a <% if (listType === 'all') { %>class="selected" <% } %>href="<%= url('/all') %>">Alla</a></li>
+            <li><a <% if (listType === 'remaining') { %>class="selected" <% } %>href="<%= url('/') %>">Återstående</a></li>
+            <li><a <% if (listType === 'completed') { %>class="selected" <% } %>href="<%= url('/completed') %>">Avklarade</a></li>
+         </ul>
+      </footer>
    </div>
-   <% } %>
-   <form class="todo-form" action="<%= url('/add') %>" method="post">
-      <input type="text" name="todoItem" placeholder="<%= appData.get('placeholderText') %>" autocomplete="off" />
-      <input type="submit" value="<%= appData.get('buttonText') %>" />
-   </form>
-
-   <section class="main">
-      <%= partial.render('todo-list', obj) %>
-   </section>
-
-   <footer>
-      <span class="todo-count"><%= partial.render('todo-count', {count: items.length}) %></span>
-      <ul class="filters">
-         <li><a <% if (listType === 'all') { %>class="selected" <% } %>href="<%= url('/all') %>">Alla</a></li>
-         <li><a <% if (listType === 'remaining') { %>class="selected" <% } %>href="<%= url('/') %>">Återstående</a></li>
-         <li><a <% if (listType === 'completed') { %>class="selected" <% } %>href="<%= url('/completed') %>">Avklarade</a></li>
-      </ul>
-   </footer>
 </div>

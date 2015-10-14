@@ -5,13 +5,13 @@ var
    items          = require('/modules/items'),
    appData        = require('appData');
 
-function renderIndex(req, res, items, listType) {
+function renderIndex(req, res, todoItems, listType) {
    var data = {
-      items: items,
-      headingFont: propertyUtil.getString(appData.get('headingFont'), 'selectorText'),
+      items: todoItems,
       itemFont: propertyUtil.getString(appData.get('itemFont'), 'selectorText'),
       appData: appData,
       listType: listType,
+      remaining: items.getItemsCount(),
       error: req.hasError() ? { status: req.getErrorStatus(), message: req.getErrorMessage() } : undefined
    };
 
@@ -40,12 +40,12 @@ router.post('/add', function(req, res) {
       result = false;
 
    if (!todoItem) {
-      res.sendError(400, 'You cannot add empty items');
+      res.sendError(400, 'Du måste skriva något..');
       return false;
    }
 
    if (todoItems.length >= appData.get('maxNumberOfItems')) {
-      res.sendError(400, 'You cannot add more TODOs before you actually do something');
+      res.sendError(400, 'Du har redan fullt upp. Du måste lösa någon uppgift innan du kan lägga till nya..');
       return false;
    }
 
@@ -58,33 +58,33 @@ router.post('/add', function(req, res) {
             done: false
          },
          itemFont: propertyUtil.getString(appData.get('itemFont'), 'selectorText'),
-         count: todoItems.length
+         count: items.getItemsCount()
       });
    } else {
-      res.redirect('/');
+      res.redirect('back');
    }
 });
 
 router.post('/delete/:item', function(req, res) {
    items.deleteItem(req.params.get('item'));
-   res.redirect('/');
+   res.redirect('back');
 });
 
 router['delete']('/delete/:item', function(req, res) {
    items.deleteItem(req.params.get('item'));
    return res.json({
-      count: items.getItems().length
+      count: items.getItemsCount()
    });
 });
 
 router.post('/complete/:item', function(req, res) {
    items.completeItem(req.params.get('item'));
-   res.redirect('/');
+   res.redirect('back');
 });
 
 router.put('/complete/:item', function(req, res) {
    items.completeItem(req.params.get('item'));
    return res.json({
-      count: items.getItems().length
+      count: items.getItemsCount()
    });
 });

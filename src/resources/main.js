@@ -20,11 +20,13 @@ define(function(require) {
 
       onInit: function() {
          this.$el.addClass('js');
-         this.$todoCount = this.$('.todo-count');
+         if (this.$el.width() > 315) {
+            this.$el.addClass('wide');
+         }
       },
 
       updateTodoCount: function(data) {
-         this.$todoCount.html(this.renderTemplate(todoCountTemplate, data));
+         this.$('.todo-count').html(this.renderTemplate(todoCountTemplate, data));
       },
 
       handleDone: function(e) {

@@ -25,6 +25,10 @@ exports.getItems = function() {
    });
 };
 
+exports.getItemsCount = function() {
+   return getItems().length;
+};
+
 exports.getCompletedItems = function() {
    return getCompletedItems().map(function(item) {
       return {
