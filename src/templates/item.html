@@ -1,1 +1,8 @@
-<li class="<%= itemFont %>"><span class="item-name"><%= item %></span> <form class="todo-delete-form" action="<%= url('/delete/' + item) %>" method="post"><input type="submit" class="delete-item" value="Delete"/></form></li>
+<li class="<%= itemFont %><% if (item.done) { %> done<% } %>"><span class="item-name"><%= item.name %></span>
+   <form class="todo-delete-form" action="<%= url('/delete/' + item.name) %>" method="post">
+      <input type="submit" class="destroy" value="Ta bort"/>
+   </form>
+   <form class="todo-done-form" action="<%= url('/complete/' + item.name) %>" method="post">
+      <input type="submit" class="done" value="Klar" />
+   </form>
+</li>

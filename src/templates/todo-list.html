@@ -1,0 +1,5 @@
+<ul class="todo-list <%= listType %>">
+   <% _.each(items, function(item) { %>
+   <%= partial.render('item', {item: item, itemFont: itemFont}) %>
+   <% }); %>
+</ul>
