@@ -21,3 +21,10 @@ ul.todo-list li .delete-item {
 .todo-delete-form {
    float: right;
 }
+
+.error {
+   padding: 5px;
+   color: #a94442;
+   border-color: #a94442;
+   background-color: #f2dede;
+}

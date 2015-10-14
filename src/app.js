@@ -9,7 +9,8 @@ router.get('/',  function(req, res) {
       items: userStore.items ? userStore.items.split('|') : [],
       headingFont: propertyUtil.getString(appData.get('headingFont'), 'selectorText'),
       itemFont: propertyUtil.getString(appData.get('itemFont'), 'selectorText'),
-      appData: appData
+      appData: appData,
+      error: req.hasError() ? { status: req.getErrorStatus(), message: req.getErrorMessage() } : undefined
    });
 });
 
@@ -17,51 +18,31 @@ function toManyItems(items) {
    return items.length >= appData.get('maxNumberOfItems');
 }
 
-function handleAdd(todoItem, items, res) {
-   if (!todoItem || toManyItems(items)) {
-      res.redirect(400, '/');
-      return false;
-   }
-
-   res.redirect('/');
-   return true;
-}
-
-function handleAjaxAdd(todoItem, items, res) {
-   if (!todoItem) {
-      res.setStatus(400);
-      res.json({
-         message: 'You cannot add empty items'
-      });
-      return false;
-   }
-
-   if (toManyItems(items)) {
-      res.setStatus(400);
-      res.json({
-         message: 'You cannot add more TODOs before you actually do something'
-      });
-      return false;
-   }
-
-   res.json({
-      item: todoItem,
-      itemFont: propertyUtil.getString(appData.get('itemFont'), 'selectorText')
-   });
-   return true;
-}
-
 router.post('/add', function(req, res) {
    var todoItem = req.params.get('todoItem'),
       items = userStore.items ? userStore.items.split('|') : [],
       result = false;
 
-   result = req.isAjax() ? handleAjaxAdd(todoItem, items, res) :
-      handleAdd(todoItem, items, res);
+   if (!todoItem) {
+      res.sendError(400, 'You cannot add empty items')
+      return false;
+   }
 
-   if (result) {
-      items.push(todoItem);
-      userStore.items = items.join('|');
+   if (toManyItems(items)) {
+      res.sendError(400, 'You cannot add more TODOs before you actually do something');
+      return false;
+   }
+
+   items.push(todoItem);
+   userStore.items = items.join('|');
+
+   if (req.isAjax()) {
+      res.json({
+         item: todoItem,
+         itemFont: propertyUtil.getString(appData.get('itemFont'), 'selectorText')
+      });
+   } else {
+      res.redirect('/');
    }
 });
 

@@ -1,4 +1,12 @@
 <h1 class="<%= headingFont %>"><%= appData.get('headingText') %></h1>
+
+<% if (typeof(error) !== 'undefined') { %>
+<div class="error">
+   Error code: <%= error.status %><br>
+   Message: <%= error.message %>
+</div>
+<% } %>
+
 <form class="todo-form" action="<%= url('/add') %>" method="post">
    <input type="text" name="todoItem" placeholder="<%= appData.get('placeholderText') %>" autocomplete="off" />
    <input type="submit" value="<%= appData.get('buttonText') %>" />
