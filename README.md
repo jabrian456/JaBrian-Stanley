@@ -1,5 +1,5 @@
 # todo-example-app
-A simple todo app for [SiteVision](http://www.sitevision.se/). Inspired by [Todo MVC](http://todomvc.com/).
+A simple todo app for [SiteVision](http://www.sitevision.se/). Inspired by [TodoMVC](http://todomvc.com/).
 
 ## Getting started
 
