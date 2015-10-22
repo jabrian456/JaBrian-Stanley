@@ -16,11 +16,6 @@
          "value": 10
       },
       {
-         "name": "headingFont",
-         "type": "sv.font",
-         "label": "Rubrikformatmall"
-      },
-      {
          "name": "itemFont",
          "type": "sv.font",
          "label": "Listformatmall"

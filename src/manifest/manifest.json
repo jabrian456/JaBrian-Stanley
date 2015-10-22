@@ -1,8 +1,10 @@
 {
    "id": "todo-example-app",
    "version": "0.0.1",
-   "name": "TODO Example app",
+   "name": "Todo",
    "author": "SiteVision AB",
-   "description": "A simple todo app",
-   "helpUrl": "https:/help.sitevision.se"
+   "appIcon": "assets/todo-icon.png",
+   "appCategory": "Social",
+   "description": "En enkel \"att göra\"-lista.",
+   "helpUrl": "https://help.sitevision.se"
 }
